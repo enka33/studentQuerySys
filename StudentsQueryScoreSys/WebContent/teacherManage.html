@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8"></meta>
+		<link rel="stylesheet" href="./resource/css/dist/css/bootstrap.min.css" />
+		<link href="./resource/css/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
+		<script src="./resource/js/jquery.min.js"></script>
+		<script src="./resource/js/jquery.cookie.js"></script>
+		<script src="./resource/js/bootstrap.min.js"></script>
+		<script src="./resource/js/bootstrap-editable.min.js"></script>	
+		
+		<script src="./resource/js/bootstrap-table.min.js"></script>
+   	 	<link href="./resource/css/bootstrap-table.css" rel="stylesheet" />
+    	<script src="./resource/js/bootstrap-table-zh-CN.min.js"></script>
+    	
+		<script src="./resource/base/base.js"></script>	
+		<script src="./resource/base/util.js"></script>	
+		<link rel="stylesheet" href="./resource/base/base.css" />
+		<link rel="stylesheet" href="./resource/score/css/teacherManage.css" />
+		<script type="text/javascript" src="./resource/score/js/teacherManage/teacherManage.js"></script>
+	
+		<title>学生管理</title>
+		<link rel="icon" href="./手动冷哼.ico" type="image/x-icon"></link>
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-default" role="navigation">
+			  <div class="container-fluid">
+			    <div class="navbar-header rightMove">
+			      <a class="navbar-brand" href="http://www.xiyou.edu.cn/">西安邮电学院</a>
+			    </div>
+			    <ul class="nav navbar-nav navbar-left">
+			    	<li class="active"><a href="http://www.xiyou.edu.cn/">首页</a></li>
+					<li id="navStudentManage"><a href="#">学生管理</a></li>
+					<li id="navSubjectManage"><a href="#">科目管理</a></li>
+					<li id="navScoreManage"><a href="#">成绩管理</a></li>
+			    </ul>
+			    <ul class="nav navbar-nav navbar-right">
+			      <li data-toggle="modal" data-target="#modifyPasswordModal"><a href="#" id="modalModify"><span class="glyphicon glyphicon-wrench"></span> 修改密码</a></li>
+			      <li><a href="#" id="logout"><span class="glyphicon glyphicon-log-out"></span> 登出</a></li>
+			    </ul>
+			   </div>
+			</nav>
+			
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="modifyPasswordModal" tabindex="-1" role="dialog" aria-labelledby="modifyPasswordModalLabel" aria-hidden="true">
+				<div class="modal-dialog modalWidth">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								&times;
+							</button>
+							<h4 class="modal-title" id="modifyPasswordModalLabel">
+								修改密码
+							</h4>
+						</div>
+						<div class="modal-body">
+							<div style="padding: 10px;">
+								<div class="input-group">
+									<span class="input-group-addon">原始密码</span>
+									<input type="password" class="form-control" placeholder="请输入原始密码" id="iptPastPWD">
+								</div>
+								<br>
+								<div class="input-group">
+									<span class="input-group-addon">修改密码</span>
+									<input type="password" class="form-control" placeholder="请输入新密码" id="iptNowPWD" title="密码长度6到15位">
+								</div>
+								<br>
+								<div class="input-group">
+									<span class="input-group-addon">确认密码</span>
+									<input type="password" class="form-control" placeholder="请确认新密码" id="iptConfirmPWD" title="密码长度6到15位">
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal" id="modalClose">&nbsp &nbsp 关闭 &nbsp &nbsp</button>
+							<button type="button" class="btn btn-primary" id="btnModifyPDW">&nbsp &nbsp 确定 &nbsp &nbsp</button>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal -->
+			</div>
+			
+		</header>
+		<section class="container">
+			<div class="row">
+				<div class="col-md-2 top30">
+					<img src="./resource/pic/teacher/" alt="照片" id="photo" class="divXCenter"></img>
+					<div id="name" class="font16 textXCenter">姓名</div>
+					<div id="id" class="font16 textXCenter">学工号</div>
+					<div id="department" class="font16 textXCenter">院系</div>
+				</div>
+				<div class="col-md-10">
+					<div id="studentManage">
+						<div id="selectGradeMajor" class="font16 height80">
+							<span class="top30">年级选择</span>
+							<select class="top30 widthHeight150-30" id="selectGrade1">
+							</select>
+							<span class="top30"> &nbsp &nbsp &nbsp &nbsp &nbsp  专业选择</span>	
+							<select class="top30 widthHeight150-30" id="selectMajor1">
+							</select>
+							<button type="button" class="btn btn-success top30 floatRight" id="btnQueryStudents">&nbsp &nbsp &nbsp 查看 &nbsp &nbsp &nbsp</button>
+			<!-- 			<button type="button" class="btn btn-success top30 floatRight" id="btnInputStudents">&nbsp &nbsp &nbsp 录入 &nbsp &nbsp &nbsp</button>	 -->	
+						</div>
+						<div id="showSet">
+							<table class="table">
+							   <thead>
+							      <tr>
+							         <th>学号</th>
+							         <th>姓名</th>
+							         <th>身份证号</th>
+							         <th>状态</th>
+							      </tr>
+							   </thead>
+							   <tbody id="tbodyStudent">
+							   </tbody>
+							</table>
+						</div>
+					</div>
+					
+					<div id="subjectManage" class="displayNone">
+						<div class="font16 height80">
+							<span class="top30">专业选择</span>	
+							<select class="top30 widthHeight150-30" id="selectMajor2">
+							</select>
+							<button type="button" class="btn btn-success top30 floatRight" id="btnQuerySubject">&nbsp &nbsp &nbsp 查看 &nbsp &nbsp &nbsp</button>
+					<!-- 		<button type="button" class="btn btn-success top30 floatRight" id="btnInputSubject">&nbsp &nbsp &nbsp 录入 &nbsp &nbsp &nbsp</button>	 -->
+						</div>
+						<div id="showSet">
+							<table class="table">
+							   <thead>
+							      <tr>
+							      	<th>科目编号</th>
+							        <th>科目</th>
+							      </tr>
+							   </thead>
+							   <tbody id="tbodySubject">
+							   </tbody>
+							</table>
+						</div>
+					</div>
+					
+					<div id="scoreManage" class="displayNone">
+						<div class="font16 height80">
+							<span class="top30">年级选择</span>
+							<select class="top30 widthHeight150-30" id="selectGrade3">
+							</select>
+							<span class="top30"> &nbsp  专业选择</span>	
+							<select class="top30 widthHeight150-30" id="selectMajor3">
+							</select>
+							<span class="top30"> &nbsp  科目选择</span>	
+							<select class="top30 widthHeight150-30" id="selectSubject3">
+							</select>
+							<button type="button" class="btn btn-success top30 floatRight" id="btnQueryScore">&nbsp &nbsp &nbsp 查看 &nbsp &nbsp &nbsp</button>
+				<!-- 		<button type="button" class="btn btn-success top30 floatRight" id="btnInputScore">&nbsp &nbsp &nbsp 录入 &nbsp &nbsp &nbsp</button>	 -->
+						</div>
+						<div id="showSet">
+							<table class="table">
+							   <thead>
+							      <tr>
+							         <th>学号</th>
+							         <th>姓名</th>
+							         <th>成绩</th>
+							         <th>补考成绩</th>
+							      </tr>
+							   </thead>
+							   <tbody id="tbodyScore">
+							   </tbody>
+							</table>
+						</div>
+					</div>
+					
+					<button type="button" class="btn btn-default btn-default active top30 floatRight" id="btnExitScoreQuery">&nbsp &nbsp &nbsp 退出查询 &nbsp &nbsp &nbsp</button>
+				</div>
+			</div>
+		</section>
+		<footer>
+			
+		</footer>
+	</body>
+</html>

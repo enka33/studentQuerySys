@@ -1,0 +1,22 @@
+* {
+	margin:0;
+	padding:0;
+	text-decoration:none;
+	font-family:Microsoft YaHei;
+}
+
+html,body{
+	width:100%;
+	height:100%;	
+}
+
+section {
+	width:100%;
+	height:84%;
+}
+
+header,footer{
+	width:100%;
+	height:8%;
+/*	background:lightgreen;*/
+}

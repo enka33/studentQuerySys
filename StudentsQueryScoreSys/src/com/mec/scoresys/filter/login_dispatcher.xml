@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<login>
+	<action name="studentLogin" class="com.mec.scoresys.action.StudentLoginAction">
+		<result name="SUCCESS">../queryScore.html</result>
+		<result name="ERROR">../login.html</result>
+	</action>
+	<action name="teacherLogin" class="com.mec.scoresys.action.TeacherLoginAction">
+		<result name="SUCCESS">../teacherManage.html</result>
+		<result name="ERROR">../login.html</result>
+	</action>
+</login>

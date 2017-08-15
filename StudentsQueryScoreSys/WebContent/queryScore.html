@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8"></meta>
+		<link href="./resource/pic/title.ico" type="image/x-icon" rel="shortcut icon" />
+		<link rel="stylesheet" href="./resource/css/dist/css/bootstrap.min.css" />
+		<script src="./resource/js/jquery.min.js"></script>
+		<script src="./resource/js/jquery.cookie.js"></script>
+		<script src="./resource/js/bootstrap.min.js"></script>	
+		<script src="./resource/base/base.js"></script>	
+		<script src="./resource/base/util.js"></script>	
+		<link rel="stylesheet" href="./resource/base/base.css" />
+		<link rel="stylesheet" href="./resource/score/css/queryScore.css" />
+		<script type="text/javascript" src="./resource/score/js/queryScore/queryScore.js"></script>
+	
+		<title>成绩查询</title>
+		<link rel="icon" href="./紧张.ico" type="image/x-icon"></link>
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-default" role="navigation">
+			  <div class="container-fluid">
+			    <div class="navbar-header rightMove">
+			      <a class="navbar-brand" href="http://www.xiyou.edu.cn/">西安邮电学院</a>
+			    </div>
+			    <ul class="nav navbar-nav navbar-left">
+			    	<li class="active"><a href="http://www.xiyou.edu.cn/">首页</a></li>
+					<li><a href="#">成绩查询</a></li>
+			    </ul>
+			    <ul class="nav navbar-nav navbar-right">
+			      <li data-toggle="modal" data-target="#modifyPasswordModal"><a href="#" id="modalModify"><span class="glyphicon glyphicon-wrench"></span> 修改密码</a></li>
+			      <li><a href="#" id="logout"><span class="glyphicon glyphicon-log-out"></span> 登出</a></li>
+			    </ul>
+			   </div>
+			</nav>
+			
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="modifyPasswordModal" tabindex="-1" role="dialog" aria-labelledby="modifyPasswordModalLabel" aria-hidden="true">
+				<div class="modal-dialog modalWidth">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								&times;
+							</button>
+							<h4 class="modal-title" id="modifyPasswordModalLabel">
+								修改密码
+							</h4>
+						</div>
+						<div class="modal-body">
+							<div style="padding: 10px;">
+								<div class="input-group">
+									<span class="input-group-addon">原始密码</span>
+									<input type="password" class="form-control" placeholder="请输入原始密码" id="iptPastPWD">
+								</div>
+								<br>
+								<div class="input-group">
+									<span class="input-group-addon">修改密码</span>
+									<input type="password" class="form-control" placeholder="请输入新密码" id="iptNowPWD" title="密码长度6到15位">
+								</div>
+								<br>
+								<div class="input-group">
+									<span class="input-group-addon">确认密码</span>
+									<input type="password" class="form-control" placeholder="请确认新密码" id="iptConfirmPWD" title="密码长度6到15位">
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal" id="modalClose">&nbsp &nbsp 关闭 &nbsp &nbsp</button>
+							<button type="button" class="btn btn-primary" id="btnModifyPDW">&nbsp &nbsp 确定 &nbsp &nbsp</button>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal -->
+			</div>
+			
+		</header>
+		<section class="container">
+			<div class="row">
+				<div class="col-md-2 top30">
+					<img src="./resource/pic/student/" alt="照片" id="photo" class="divXCenter"></img>
+					<div id="name" class="font16 textXCenter">姓名</div>
+					<div id="id" class="font16 textXCenter">学号</div>
+					<div id="department" class="font16 textXCenter">院系</div>
+					<div id="major" class="font16 textXCenter">专业</div>
+				</div>
+				<div class="col-md-10">
+					<div id="selectYearSubject" class="font16">
+						<span class="top30">学年选择</span>
+						<select class="top30 widthHeight150-30" id="selectYear">
+							<option>全部</option>
+						</select>
+						<span class="top30"> &nbsp &nbsp &nbsp &nbsp &nbsp  学期选择</span>	
+						<select class="top30 widthHeight150-30" id="selectTerm">
+							<option>全部</option>
+						</select>
+						<button type="button" class="btn btn-success top30 floatRight" id="btnScoreQuery">&nbsp &nbsp &nbsp 查询成绩 &nbsp &nbsp &nbsp</button>
+						<button type="button" class="btn btn-success top30 floatRight" id="btnFailScoreQuery">&nbsp &nbsp 未通过成绩 &nbsp &nbsp</button>	
+					</div>
+					<div id="scoreSet">
+						<table class="table">
+						   <thead>
+						      <tr>
+						         <th>科目</th>
+						         <th>成绩</th>
+								 <th>补考成绩</th>
+						         <th>成绩状态</th> 
+						      </tr>
+						   </thead>
+						   <tbody>
+						   </tbody>
+						</table>
+					</div>
+					<button type="button" class="btn btn-default btn-default active top30 floatRight" id="btnExitScoreQuery">&nbsp &nbsp &nbsp 退出查询 &nbsp &nbsp &nbsp</button>
+				</div>
+			</div>
+		</section>
+		<footer>
+			
+		</footer>
+	</body>
+</html>
+
